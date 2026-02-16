@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deepan Raj S - Design Engineer Portfolio</title>
+    <title>Deepanraj S - Design Engineer Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -12,35 +12,84 @@
         }
 
         :root {
-            --primary: #2563eb;
-            --secondary: #0ea5e9;
-            --dark: #1e293b;
-            --light: #f8fafc;
-            --accent: #8b5cf6;
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #1a1a1a;
+            --bg-card: #1f1f1f;
+            --text-primary: #ffffff;
+            --text-secondary: #b3b3b3;
+            --accent-1: #00d4ff;
+            --accent-2: #ff006e;
+            --accent-3: #8338ec;
+            --border: #333333;
         }
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: var(--dark);
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+        }
+
+        .bg-animation::before {
+            content: '';
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -250px;
+            right: -250px;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        .bg-animation::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255, 0, 110, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -200px;
+            left: -200px;
+            animation: float 15s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            33% { transform: translate(30px, -50px) rotate(120deg); }
+            66% { transform: translate(-20px, 20px) rotate(240deg); }
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         /* Header Section */
         header {
-            background: linear-gradient(135deg, rgba(37, 99, 235, 0.95), rgba(139, 92, 246, 0.95));
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             color: white;
-            padding: 80px 20px;
+            padding: 80px 40px;
             text-align: center;
             border-radius: 20px;
             margin-bottom: 40px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            box-shadow: 0 20px 60px rgba(0, 212, 255, 0.1);
             position: relative;
             overflow: hidden;
         }
@@ -49,73 +98,112 @@
             content: '';
             position: absolute;
             top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none"/><path d="M0 50 Q 25 25, 50 50 T 100 50" stroke="rgba(255,255,255,0.1)" fill="none" stroke-width="2"/></svg>');
-            opacity: 0.3;
-            animation: wave 15s linear infinite;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+            animation: shine 3s infinite;
         }
 
-        @keyframes wave {
-            0% { background-position: 0 0; }
-            100% { background-position: 1000px 0; }
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 1;
         }
 
         .profile-img {
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 5px solid white;
-            margin: 0 auto 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            border: 4px solid var(--accent-1);
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+            background: linear-gradient(135deg, var(--accent-1), var(--accent-2));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5em;
+            font-weight: bold;
             position: relative;
-            z-index: 1;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 30px rgba(0, 212, 255, 0.5); }
+            50% { box-shadow: 0 0 50px rgba(0, 212, 255, 0.8); }
+        }
+
+        .profile-content {
+            text-align: left;
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 3.5em;
             margin-bottom: 10px;
-            position: relative;
-            z-index: 1;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            color: var(--text-primary);
         }
 
         .tagline {
-            font-size: 1.5em;
-            opacity: 0.9;
-            position: relative;
-            z-index: 1;
+            font-size: 1.3em;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
         }
 
         .contact-links {
-            margin-top: 20px;
-            position: relative;
-            z-index: 1;
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
         }
 
         .contact-links a {
-            color: white;
+            color: var(--accent-1);
             text-decoration: none;
-            margin: 0 15px;
-            font-size: 1.1em;
+            font-size: 1em;
             transition: all 0.3s;
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid var(--accent-1);
+            border-radius: 25px;
         }
 
         .contact-links a:hover {
+            background: var(--accent-1);
+            color: var(--bg-primary);
             transform: translateY(-3px);
-            text-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.4);
         }
 
         /* Section Styling */
         section {
-            background: white;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
             padding: 40px;
             margin-bottom: 30px;
             border-radius: 15px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
             animation: fadeInUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2), var(--accent-3));
         }
 
         @keyframes fadeInUp {
@@ -130,29 +218,28 @@
         }
 
         h2 {
-            color: var(--primary);
-            font-size: 2em;
+            color: var(--text-primary);
+            font-size: 2.2em;
             margin-bottom: 30px;
-            padding-bottom: 15px;
-            border-bottom: 3px solid var(--secondary);
             position: relative;
+            display: inline-block;
         }
 
         h2::after {
             content: '';
             position: absolute;
-            bottom: -3px;
+            bottom: -10px;
             left: 0;
-            width: 100px;
+            width: 60px;
             height: 3px;
-            background: var(--accent);
+            background: linear-gradient(90deg, var(--accent-1), var(--accent-2));
         }
 
         /* Software Skills Grid */
         .software-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 30px;
+            gap: 25px;
             margin-top: 30px;
         }
 
@@ -160,7 +247,8 @@
             text-align: center;
             padding: 30px 20px;
             border-radius: 15px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             cursor: pointer;
             position: relative;
@@ -171,25 +259,26 @@
             content: '';
             position: absolute;
             top: 0;
-            left: -100%;
+            left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.5), transparent);
-            transition: left 0.5s;
+            background: linear-gradient(135deg, transparent, rgba(0, 212, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.4s;
         }
 
         .software-card:hover::before {
-            left: 100%;
+            opacity: 1;
         }
 
         .software-card:hover {
-            transform: translateY(-10px) scale(1.05);
-            box-shadow: 0 20px 40px rgba(37, 99, 235, 0.3);
+            transform: translateY(-10px);
+            border-color: var(--accent-1);
+            box-shadow: 0 20px 40px rgba(0, 212, 255, 0.2);
         }
 
         .software-icon {
             margin-bottom: 15px;
-            animation: float 3s ease-in-out infinite;
             display: inline-flex;
             align-items: center;
             justify-content: center;
@@ -199,31 +288,19 @@
         .software-icon img {
             max-width: 100px;
             max-height: 80px;
-            filter: drop-shadow(0 5px 15px rgba(0,0,0,0.2));
+            filter: drop-shadow(0 5px 15px rgba(0, 212, 255, 0.3));
             transition: all 0.3s ease;
             object-fit: contain;
         }
 
         .software-card:hover .software-icon img {
-            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.3));
+            filter: drop-shadow(0 10px 25px rgba(0, 212, 255, 0.5));
             transform: scale(1.15);
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .software-card:nth-child(1) .software-icon { animation-delay: 0s; }
-        .software-card:nth-child(2) .software-icon { animation-delay: 0.2s; }
-        .software-card:nth-child(3) .software-icon { animation-delay: 0.4s; }
-        .software-card:nth-child(4) .software-icon { animation-delay: 0.6s; }
-        .software-card:nth-child(5) .software-icon { animation-delay: 0.8s; }
-        .software-card:nth-child(6) .software-icon { animation-delay: 1s; }
-
         .software-name {
             font-weight: bold;
-            color: var(--dark);
+            color: var(--text-primary);
             font-size: 1.1em;
         }
 
@@ -236,29 +313,42 @@
         }
 
         .achievement-card {
-            padding: 25px;
-            border-left: 5px solid var(--accent);
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-left: 5px solid var(--accent-1);
             border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
             transition: all 0.3s;
+        }
+
+        .achievement-card:nth-child(2) {
+            border-left-color: var(--accent-2);
+        }
+
+        .achievement-card:nth-child(3) {
+            border-left-color: var(--accent-3);
         }
 
         .achievement-card:hover {
             transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+            background: rgba(0, 212, 255, 0.05);
         }
 
         .achievement-icon {
-            font-size: 2.5em;
-            margin-bottom: 10px;
+            font-size: 3em;
+            margin-bottom: 15px;
         }
 
         .achievement-title {
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: bold;
             margin-bottom: 10px;
+            color: var(--text-primary);
+        }
+
+        .achievement-card p {
+            color: var(--text-secondary);
         }
 
         /* Rendering Gallery */
@@ -273,7 +363,8 @@
             position: relative;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
             transition: all 0.4s;
             cursor: pointer;
             aspect-ratio: 16/10;
@@ -281,13 +372,18 @@
 
         .rendering-card:hover {
             transform: scale(1.05);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+            border-color: var(--accent-1);
+            box-shadow: 0 20px 50px rgba(0, 212, 255, 0.3);
         }
 
         .rendering-img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            font-weight: bold;
             transition: all 0.4s;
         }
 
@@ -300,9 +396,9 @@
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent);
             color: white;
-            padding: 20px;
+            padding: 25px;
             transform: translateY(100%);
             transition: all 0.4s;
         }
@@ -314,12 +410,13 @@
         .rendering-title {
             font-size: 1.3em;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: var(--accent-1);
         }
 
         .rendering-desc {
-            font-size: 0.9em;
-            opacity: 0.9;
+            font-size: 0.95em;
+            color: var(--text-secondary);
         }
 
         /* Project Timeline */
@@ -336,74 +433,86 @@
             top: 0;
             bottom: 0;
             width: 3px;
-            background: linear-gradient(to bottom, var(--primary), var(--accent));
+            background: linear-gradient(to bottom, var(--accent-1), var(--accent-2));
         }
 
         .timeline-item {
             position: relative;
             margin-bottom: 30px;
-            padding: 20px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 25px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 10px;
             transition: all 0.3s;
         }
 
         .timeline-item:hover {
             transform: translateX(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent-1);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
         }
 
         .timeline-item::before {
             content: '';
             position: absolute;
             left: -43px;
-            top: 25px;
+            top: 30px;
             width: 15px;
             height: 15px;
             border-radius: 50%;
-            background: var(--accent);
-            border: 3px solid white;
-            box-shadow: 0 0 0 3px var(--accent);
+            background: var(--accent-1);
+            border: 3px solid var(--bg-primary);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.6);
         }
 
         .project-name {
-            font-size: 1.3em;
+            font-size: 1.4em;
             font-weight: bold;
-            color: var(--primary);
-            margin-bottom: 10px;
+            color: var(--text-primary);
+            margin-bottom: 8px;
         }
 
         .project-client {
-            color: var(--accent);
+            color: var(--accent-2);
             font-style: italic;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
+        }
+
+        .timeline-item p {
+            color: var(--text-secondary);
         }
 
         /* Experience Section */
         .experience-item {
             margin-bottom: 40px;
-            padding: 25px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 30px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .experience-item:hover {
+            border-color: var(--accent-1);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
         }
 
         .company-name {
-            font-size: 1.5em;
+            font-size: 1.6em;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            color: var(--text-primary);
         }
 
         .job-title {
-            font-size: 1.2em;
-            opacity: 0.9;
+            font-size: 1.3em;
+            color: var(--accent-1);
             margin-bottom: 5px;
         }
 
         .duration {
-            opacity: 0.8;
-            margin-bottom: 15px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
         }
 
         .experience-item ul {
@@ -412,23 +521,58 @@
         }
 
         .experience-item li {
-            padding-left: 25px;
-            margin-bottom: 10px;
+            padding-left: 30px;
+            margin-bottom: 12px;
             position: relative;
+            color: var(--text-secondary);
         }
 
         .experience-item li::before {
             content: '▹';
             position: absolute;
             left: 0;
-            color: #fbbf24;
+            color: var(--accent-1);
             font-size: 1.5em;
+        }
+
+        /* Education Cards */
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .education-card {
+            padding: 30px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            border-radius: 15px;
+            transition: all 0.3s;
+        }
+
+        .education-card:hover {
+            border-color: var(--accent-1);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .education-card h3 {
+            font-size: 1.5em;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+
+        .education-card p {
+            color: var(--text-secondary);
+            margin-bottom: 8px;
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            h1 { font-size: 2em; }
-            .tagline { font-size: 1.2em; }
+            h1 { font-size: 2.2em; }
+            .tagline { font-size: 1.1em; }
+            .profile-section { flex-direction: column; }
+            .profile-content { text-align: center; }
+            .contact-links { justify-content: center; }
             .software-grid { grid-template-columns: repeat(2, 1fr); }
             .rendering-gallery { grid-template-columns: 1fr; }
             .timeline { padding-left: 30px; }
@@ -443,24 +587,29 @@
     </style>
 </head>
 <body>
+    <div class="bg-animation"></div>
     <div class="container">
         <!-- Header -->
         <header>
-            <div class="profile-img" style="background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; color: white; font-size: 4em; font-weight: bold;">DS</div>
-            <h1>DEEPANRAJ S</h1>
-            <p class="tagline">Design Engineer | 3D Modeling Specialist | Marine & Railway Engineering</p>
-            <div class="contact-links">
-                <a href="tel:+919600461558">📱 +91 9600461558</a>
-                <a href="/cdn-cgi/l/email-protection#0662636376676874676c36343346616b676f6a2865696b">📧 <span class="__cf_email__" data-cfemail="8befeeeefbeae5f9eae1bbb9becbece6eae2e7a5e8e4e6">[email&#160;protected]</span></a>
-                <a href="https://www.linkedin.com/in/deepanraj" target="_blank">💼 LinkedIn</a>
+            <div class="profile-section">
+                <div class="profile-img">DS</div>
+                <div class="profile-content">
+                    <h1>DEEPANRAJ S</h1>
+                    <p class="tagline">Design Engineer | 3D Modeling Specialist | Marine & Railway Engineering</p>
+                    <div class="contact-links">
+                        <a href="tel:+919600461558">📱 +91 9600461558</a>
+                        <a href="mailto:deepanraj025@gmail.com">📧 Email</a>
+                        <a href="https://www.linkedin.com/in/deepanraj" target="_blank">💼 LinkedIn</a>
+                    </div>
+                </div>
             </div>
         </header>
 
         <!-- About Section -->
         <section class="fade-in">
             <h2>About Me</h2>
-            <p style="font-size: 1.1em; line-height: 1.8; color: #475569;">
-                I am a detail-oriented and technically skilled Layout Design Engineer with <strong>5 years of experience</strong> 
+            <p style="font-size: 1.1em; line-height: 1.8; color: var(--text-secondary);">
+                I am a detail-oriented and technically skilled Layout Design Engineer with <strong style="color: var(--accent-1);">5 years of experience</strong> 
                 in creating precise 2D/3D layouts for marine and railway projects. Proficient in CAD software like AutoCAD, 
                 Revit, and 3DS Max, I excel at interpreting complex engineering drawings and delivering optimized layout solutions. 
                 With international experience in Germany and multiple industry awards, I bring a strong commitment to quality, 
@@ -477,12 +626,12 @@
                     <div class="achievement-title">International Assignment</div>
                     <p>Successfully completed a 3-month on-site assignment in Rostock and Wismar, Germany</p>
                 </div>
-                <div class="achievement-card" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">
+                <div class="achievement-card">
                     <div class="achievement-icon">🏆</div>
                     <div class="achievement-title">Excellence Award</div>
                     <p>Received company Excellence Award for outstanding performance and dedication</p>
                 </div>
-                <div class="achievement-card" style="background: linear-gradient(135deg, #30cfd0 0%, #330867 100%);">
+                <div class="achievement-card">
                     <div class="achievement-icon">🎓</div>
                     <div class="achievement-title">Academic Excellence</div>
                     <p>Received Academic Excellence Award in college with CGPA 8.45</p>
@@ -496,37 +645,37 @@
             <div class="software-grid">
                 <div class="software-card">
                     <div class="software-icon">
-                        <img src="https://damassets.autodesk.net/content/dam/autodesk/www/products/responsive-imagery/autocad-2023-social-400x400.jpg" alt="AutoCAD Logo">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #E51050, #C20F44); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 3em; font-weight: bold; color: white; box-shadow: 0 5px 20px rgba(229, 16, 80, 0.4);">A</div>
                     </div>
                     <div class="software-name">AutoCAD</div>
                 </div>
                 <div class="software-card">
                     <div class="software-icon">
-                        <img src="https://damassets.autodesk.net/content/dam/autodesk/www/products/responsive-imagery/revit-2023-social-400x400.jpg" alt="Revit Logo">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #0696D7, #0575B3); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 3em; font-weight: bold; color: white; box-shadow: 0 5px 20px rgba(6, 150, 215, 0.4);">R</div>
                     </div>
                     <div class="software-name">Revit</div>
                 </div>
                 <div class="software-card">
                     <div class="software-icon">
-                        <img src="https://damassets.autodesk.net/content/dam/autodesk/www/products/responsive-imagery/3ds-max-2023-social-400x400.jpg" alt="3ds Max Logo">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #00A8E0, #0086B5); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 2em; font-weight: bold; color: white; box-shadow: 0 5px 20px rgba(0, 168, 224, 0.4);">3ds</div>
                     </div>
                     <div class="software-name">3ds Max</div>
                 </div>
                 <div class="software-card">
                     <div class="software-icon">
-                        <img src="https://www.chaos.com/images/og_images/vray_for_revit.jpg" alt="V-Ray Logo">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #00A651, #008741); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 3em; font-weight: bold; color: white; box-shadow: 0 5px 20px rgba(0, 166, 81, 0.4);">V</div>
                     </div>
                     <div class="software-name">V-Ray</div>
                 </div>
                 <div class="software-card">
                     <div class="software-icon">
-                        <img src="https://damassets.autodesk.net/content/dam/autodesk/www/products/responsive-imagery/navisworks-manage-2023-social-400x400.jpg" alt="Navisworks Logo">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #1565C0, #0D47A1); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 3em; font-weight: bold; color: white; box-shadow: 0 5px 20px rgba(21, 101, 192, 0.4);">N</div>
                     </div>
                     <div class="software-name">Navisworks</div>
                 </div>
                 <div class="software-card">
                     <div class="software-icon">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Microsoft_Office_logo_%282019%E2%80%93present%29.svg/1200px-Microsoft_Office_logo_%282019%E2%80%93present%29.svg.png" alt="MS Office Logo">
+                        <div style="width: 80px; height: 80px; background: linear-gradient(135deg, #D83B01, #C13B1B); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 3em; font-weight: bold; color: white; box-shadow: 0 5px 20px rgba(216, 59, 1, 0.4);">O</div>
                     </div>
                     <div class="software-name">MS Office</div>
                 </div>
@@ -538,42 +687,42 @@
             <h2>3D Rendering Portfolio</h2>
             <div class="rendering-gallery">
                 <div class="rendering-card">
-                    <div class="rendering-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3em; font-weight: bold;">🚢</div>
+                    <div class="rendering-img" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">🚢</div>
                     <div class="rendering-overlay">
                         <div class="rendering-title">Marine Interior Design</div>
                         <div class="rendering-desc">Luxury cabin layouts and wet units for cruise ships</div>
                     </div>
                 </div>
                 <div class="rendering-card">
-                    <div class="rendering-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3em; font-weight: bold;">🏗️</div>
+                    <div class="rendering-img" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">🏗️</div>
                     <div class="rendering-overlay">
                         <div class="rendering-title">Technical Spaces</div>
                         <div class="rendering-desc">Machinery rooms, pump rooms, and utility zones</div>
                     </div>
                 </div>
                 <div class="rendering-card">
-                    <div class="rendering-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3em; font-weight: bold;">🔧</div>
+                    <div class="rendering-img" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">🔧</div>
                     <div class="rendering-overlay">
                         <div class="rendering-title">Piping Systems</div>
                         <div class="rendering-desc">Complex 3D piping layouts with clash detection</div>
                     </div>
                 </div>
                 <div class="rendering-card">
-                    <div class="rendering-img" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3em; font-weight: bold;">🚆</div>
+                    <div class="rendering-img" style="background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);">🚆</div>
                     <div class="rendering-overlay">
                         <div class="rendering-title">Railway Interiors</div>
                         <div class="rendering-desc">Precision components for railway coach manufacturing</div>
                     </div>
                 </div>
                 <div class="rendering-card">
-                    <div class="rendering-img" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); display: flex; align-items: center; justify-content: center; color: white; font-size: 3em; font-weight: bold;">🎯</div>
+                    <div class="rendering-img" style="background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);">🎯</div>
                     <div class="rendering-overlay">
                         <div class="rendering-title">Modular Designs</div>
                         <div class="rendering-desc">Standardized packages for repetitive layouts</div>
                     </div>
                 </div>
                 <div class="rendering-card">
-                    <div class="rendering-img" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); display: flex; align-items: center; justify-content: center; color: #333; font-size: 3em; font-weight: bold;">📋</div>
+                    <div class="rendering-img" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);">📋</div>
                     <div class="rendering-overlay">
                         <div class="rendering-title">Technical Documentation</div>
                         <div class="rendering-desc">Detailed drawings, BOQs, and installation manuals</div>
@@ -627,7 +776,7 @@
                 </ul>
             </div>
 
-            <div class="experience-item" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+            <div class="experience-item">
                 <div class="company-name">Dynamic Air Engineering (India) Pvt Limited</div>
                 <div class="job-title">Production Executive (Railway)</div>
                 <div class="duration">October 2021 - June 2022 | Tiruvallur</div>
@@ -640,7 +789,7 @@
                 </ul>
             </div>
 
-            <div class="experience-item" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+            <div class="experience-item">
                 <div class="company-name">Sharda Motors Pvt Ltd</div>
                 <div class="job-title">Graduate Trainee</div>
                 <div class="duration">September 2020 - October 2021 | Sriperumbudur</div>
@@ -656,25 +805,25 @@
         <!-- Education & Certifications -->
         <section class="fade-in">
             <h2>Education & Certifications</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px;">
-                <div style="padding: 25px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <h3 style="font-size: 1.5em; margin-bottom: 10px;">🎓 Bachelor of Mechanical Engineering</h3>
-                    <p style="font-size: 1.1em; opacity: 0.9;">Sona College of Technology</p>
-                    <p style="opacity: 0.8;">2016 - 2020 | CGPA: 8.45</p>
+            <div class="education-grid">
+                <div class="education-card">
+                    <h3>🎓 Bachelor of Mechanical Engineering</h3>
+                    <p style="font-size: 1.1em; color: var(--text-primary); margin-top: 10px;">Sona College of Technology</p>
+                    <p>2016 - 2020 | CGPA: 8.45</p>
                 </div>
-                <div style="padding: 25px; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                    <h3 style="font-size: 1.5em; margin-bottom: 15px;">📜 Certifications</h3>
-                    <ul style="list-style: none; padding: 0;">
-                        <li style="margin-bottom: 8px;">✓ 3D Modeling Architectural AutoCAD</li>
-                        <li style="margin-bottom: 8px;">✓ Fusion 360</li>
-                        <li style="margin-bottom: 8px;">✓ Professional Modeling in Pro-E</li>
+                <div class="education-card">
+                    <h3>📜 Certifications</h3>
+                    <ul style="list-style: none; padding: 0; margin-top: 10px;">
+                        <li style="margin-bottom: 8px; color: var(--text-secondary);">✓ 3D Modeling Architectural AutoCAD</li>
+                        <li style="margin-bottom: 8px; color: var(--text-secondary);">✓ Fusion 360</li>
+                        <li style="margin-bottom: 8px; color: var(--text-secondary);">✓ Professional Modeling in Pro-E</li>
                     </ul>
                 </div>
             </div>
         </section>
     </div>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Add scroll animation
         const observerOptions = {
             threshold: 0.1,
@@ -701,9 +850,6 @@
                 }, 200);
             });
         });
-
-        // Rendering card modal effect
-        document.querySelectorAll('.rendering-card').forEach(card => {
-            card.addEventListener('click', function() {
-                const title = this.querySelector('.rendering-title').textContent;
-                const des
+    </script>
+</body>
+</html>
